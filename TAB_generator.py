@@ -100,11 +100,6 @@ def make_xmlhead(file):
         domtree.writexml(f, addindent=' ', newl='\n')
     return newfilepath
 
-
-
-# In[19]:
-
-
 def choose_measure(songs, song_num, measure_nums, mode='notes'):
     song_index = songs[song_num]
     #song_index的结构太难背了 总记不住写个选小节的函数吧

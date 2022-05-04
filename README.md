@@ -58,21 +58,40 @@ key_detect function suspect the key by the distribution of all pitches.
 chord_recognize(pitch_cluster)
 ```
 
-This function racognize a chord's type by the in-chord intervals. For now it supports:
+This function recognize a chord's type by the in-chord intervals. For now it supports:
 
 ```
     '''
-    maj：有且仅有大三度和五度， 435 435 435 或 75 或 48 39
-    min：有且仅有小三度和五度， 345 345 345
-    maj7：存在大七度和大三度， 4341 4341 4341或471
-    m7：存在小七度和小三度， 3432 3432 3432或732
-    7：存在小七度和大三度， 4332 4332 4332或732
-    aug：存在增五度（小六度）， 444 444 444
-    dim：存在增四度， 326 326 326或
+    maj: interval loops as 435 435 435 or 75 or 48 or 39 semitones
+    min: 345 345 345
+    maj7: ， 4341 4341 4341 or 471
+    m7: 3432 3432 3432 or 732
+    7:  4332 4332 4332
+    aug: 444 444 444
+    dim: 326 326 326
     '''
 ```
 
-## 
-For more detial, please visit or paper on ISMIR2022:
+## Convert between MIDI value/encoded pitch/finger positions
+```
+str2midi(str1)
+midi2str(midivalue)
+finger2midi(finger)
+midi2finger(midivalue)
+```
+Special tunings also supported
+
+## Root and melody extraction
+```
+root_detect(measure)
+```
+## xml files output(unstable, editing...)
+```
+generateTAB(pitch, finger, time)
+```
+
+################
+
+Visit our paper on ISMIR2022 for more detials:
 
 Contact us:Yuecheng_Zhou@cuc.edu.cn
