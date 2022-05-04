@@ -98,6 +98,7 @@ def make_xmlhead(file):
     newfilepath = '\\'.join(newfilepath[:-1]) + '\\head_{}.xml'.format(name)
     with open(newfilepath, 'w', encoding='utf-8') as f:
         domtree.writexml(f, addindent=' ', newl='\n')
+        
     return newfilepath
 
 
