@@ -398,6 +398,7 @@ def str_postprocess(pitchstr, mode='pitch', pitchtype='default'):
         new_cu = ''
         pitchs = [[i, finger2midi(i, tune=gl_tune)] for i in pitchstr.split() if i != '(R,R)']
         newlist = sorted(pitchs, key = lambda x: x[1])
+        newlist = reversed(newlist)
         for pitch in newlist:
             new_cu += (pitch[0] + ' ')
         if new_cu == '':
@@ -427,6 +428,12 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
         
         test_tree = parse(path + file)
         test_element = test_tree.documentElement
+        #***八度变化***
+        octavechangeNodes = test_element.getElementsByTagName('octave-change')
+        if len(octavechangeNodes) != 0:
+            octavechange = int(octavechangeNodes[0].firstChild.data)
+        else:
+            octavechange = 0
         #***记录调弦信息, 特殊调弦处理***#***
         staff_tuning = test_element.getElementsByTagName('staff-tuning')
         tunings = []
@@ -441,7 +448,8 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
            
         standard = [40, 45, 50, 55, 59, 64]
         current = [i[1] - i[0] for i in zip(standard, tunings)]
-        gl_tune = current
+        gl_tune = [i+12*octavechange for i in current]
+        
         if show_tuning:
             print(gl_tune)
         measures = test_element.getElementsByTagName('measure') #获取所有小节的nodes
@@ -664,7 +672,8 @@ def root_detect(measure, tune=[0, 0, 0, 0, 0, 0]):
        
 
 #输出流水线制作xml
-def make_notes(domtree, pitch_cu, division, timesig, finger_cu):
+def make_notes(domtree, pitch_cu, timesig, finger_cu, divisions=16):
+
     '''
     针对的是音簇，即'4G 3G 3C'
     '''
@@ -704,10 +713,7 @@ def make_notes(domtree, pitch_cu, division, timesig, finger_cu):
             restNode = domtree.createElement('rest')
             noteNode.appendChild(restNode)
         
-        noteNodelist.append(noteNode)
-        
-    
-            
+        noteNodelist.append(noteNode)       
 
     '''
     为各个noteNode加上timesig与其他乱七八糟的节点
@@ -715,16 +721,33 @@ def make_notes(domtree, pitch_cu, division, timesig, finger_cu):
     timesig是单独的时间，即'0.625'或0.0625.
     fingercu是指法簇，即'(1,3) (3,0) (5,3)'
     '''
+    #将一个长的duration分解为不同的音符连起来
+    res = []
+    num = timesig / 4
+    while num >= 1:
+        res.append(4)
+        num -= 1
+    while num >= 0.5:
+        res.append(2)
+        num -= 0.5
+    while num >= 0.25:
+        res.append(1)
+        num -= 0.25
+    while num >= 0.125:
+        res.append(0.5)
+        num -= 0.125
+    while num >= 0.0625:
+        res.append(0.125)
+        num -= 0.0625
+    #print(res)
+      
     fingerlist = finger_cu.split()
-    if_dot = 0
-    
-    timesig = float(timesig)
-    
-    
+    #print('noteNodelist长度:{}'.format(len(noteNodelist)))
     for i, noteNode in enumerate(noteNodelist):         
         domtree = minidom.Document()
         #根据曲目的division计算每个音符的duration       
-        duration = domtree.createTextNode(str(int(4 * timesig * division)))          
+        duration = domtree.createTextNode(str(int(res[0] * divisions)))      
+        #print('duration: {}'.format(duration))
         durationNode = domtree.createElement('duration')
         durationNode.appendChild(duration)   
         noteNode.appendChild(durationNode)
@@ -735,61 +758,57 @@ def make_notes(domtree, pitch_cu, division, timesig, finger_cu):
         voiceNode.appendChild(domtree.createTextNode(str(1)))
         noteNode.appendChild(voiceNode)
         
+        
         #添加type
         typeNode = domtree.createElement('type')
         typedict = {
-            'whole':1,
-            'half':0.5,
-            'quarter':0.25,
-            'eighth':0.125,  
-            '16th':0.0625
+            'whole':4,
+            'half':2,
+            'quarter':1,
+            'eighth':0.5,  
+            '16th':0.25,
+            '32nd':0.125
         }
         
-        res = []
-        num = timesig * 4
-        while num >= 1:
-            res.append(1)
-            num -= 1
-        while num >= 0.5:
-            res.append(0.5)
-            num -= 0.5
-        while num >= 0.25:
-            res.append(0.25)
-            num -= 0.25
-        while num >= 0.125:
-            res.append(0.125)
-            num -= 0.125
-        while num >= 0.0625:
-            res.append(0.0625)
-            num -= 0.0625
         
         
-        
+        '''
         #检查附点
-        typename = lambda type1: [key for key, value in typedict.items() if value == type1]
+        
+        print(typename)
         if typename(timesig) == []: #当时值未出现在其中时
+            print('{} not in'.format(timesig))
             if typename(timesig / 1.5) != []:
                 if_dot = 1
             if typename(timesig / 1.5) == []:
                 typedict.values()-timesig
                 
         #print(timesig)
-        
-        type1 = typename(timesig)
+        else:
+            type1 = typename(timesig)
+            print('type1:{}'.format(type1))
+            
         if if_dot == 1:  #如果有附点
             type1 = typename(timesig / 1.5) #暂时只能识别附点 附点音符是原音符的1.5倍时长 所以除以1.5
             dotNode = domtree.createElement('dot')
             noteNode.appendChild(dotNode)
-        if len(type1) != 0:
-            typeNode.appendChild(domtree.createTextNode(type1[0]))
-        else:
-            typeNode.appendChild(domtree.createTextNode('quarter'))
+        
+        '''
+        get_typename = lambda type1: [key for key, value in typedict.items() if value == type1]
+        type1 = get_typename(res[0])
+        #print('这个音符的type是 {}'.format(type1))
+        typeNode.appendChild(domtree.createTextNode(type1[0]))
         noteNode.appendChild(typeNode)
 
         #添加stem（符干）
         stemNode = domtree.createElement('stem')
         stemNode.appendChild(domtree.createTextNode('up'))
         noteNode.appendChild(stemNode)
+        
+        #添加staff（谱）
+        staffNode = domtree.createElement('staff')
+        staffNode.appendChild(domtree.createTextNode('1'))
+        noteNode.appendChild(staffNode)
         
         #添加notehead
         noteheadNode = domtree.createElement('notehead')
@@ -808,23 +827,64 @@ def make_notes(domtree, pitch_cu, division, timesig, finger_cu):
             string, fret = int(string[1:]), int(fret[:-1])
 
             technicalNode = domtree.createElement('technical')
-            GP7_processing = domtree.createProcessingInstruction('GP7', '<root><string>{}</string><fret>{}</fret></root>'.format(string, fret))
-            technicalNode.appendChild(GP7_processing)
+            #GP7_processing = domtree.createProcessingInstruction('GP7', '<root><string>{}</string><fret>{}</fret></root>'.format(string, fret))
+            
+            stringNode = domtree.createElement('string')
+            stringText = domtree.createTextNode(str(string))
+            stringNode.appendChild(stringText)
+            
+            fretNode = domtree.createElement('fret')
+            fretText = domtree.createTextNode(str(fret))
+            fretNode.appendChild(fretText)
+            
+            technicalNode.appendChild(stringNode)
+            technicalNode.appendChild(fretNode)
+            
             notationNode.appendChild(technicalNode)
             noteNode.appendChild(notationNode)
             
-    return noteNodelist 
+    tiednotenum = len(res)  
+    if tiednotenum > 1: #当单独的timesig已不够 需要由连音线表示时：
+        midNode, endNode = [], []
+        for node in noteNodelist:
+            mid1 = node.cloneNode(True)
+            midNode.append(mid1)
+            end1 = node.cloneNode(True)
+            endNode.append(end1)
+        for i in range(len(noteNodelist)):
+            tiestartNode = domtree.createElement('tie')
+            tiestartNode.setAttribute('type', 'start')
+            noteNodelist[i].getElementsByTagName('notation')[0].appendChild(tiestartNode)
+        midtienum = tiednotenum - 2
+        for i in range(midtienum):
+            for j in range(len(midNode)):
+                tiestartNode = domtree.createElement('tie')
+                tiestartNode.setAttribute('type', 'start') 
+                tiestopNode = domtree.createElement('tie')
+                tiestopNode.setAttribute('type', 'stop') 
+                midNode[j].getElementsByTagName('duration')[0].firstChild.data = res[i+1] * divisions
+                midNode[j].getElementsByTagName('notation')[0].appendChild(tiestartNode)
+                midNode[j].getElementsByTagName('notation')[0].appendChild(tiestopNode)
+            noteNodelist.extend(midNode)
+
+        for i in range(len(endNode)):
+            tiestopNode = domtree.createElement('tie')
+            tiestopNode.setAttribute('type', 'stop') 
+            endNode[i].getElementsByTagName('duration')[0].firstChild.data = res[-1] * divisions  
+            endNode[i].getElementsByTagName('notation')[0].appendChild(tiestopNode)
+        noteNodelist.extend(endNode)         
+    return noteNodelist
 
         
         
         
-def generateTAB(testnotes, testfingers, testtimes, filepath):   
+def generateTAB(testnotes, testfingers, testtimes, filepath, divisions=16):   
     #division采用16
     domtree = parse(filepath)
     measurenum = len(testnotes)
     first_measure = domtree.getElementsByTagName('measure')[0]
     divisionsNode = first_measure.getElementsByTagName('divisions')
-    divisionsNode[0].firstChild.data = 16
+    divisionsNode[0].firstChild.data = divisions
     
     
     #创建一些空measure，并存放在list里备用
@@ -837,19 +897,84 @@ def generateTAB(testnotes, testfingers, testtimes, filepath):
     for i in range(measurenum):  
         measurenote, measuretime, measurefinger = testnotes[i], testtimes[i], testfingers[i]
         for j, note in enumerate(measurenote):
-            noteNodelist = make_notes(domtree, note, division=16, timesig=measuretime[j], finger_cu=measurefinger[j])
+            #print('{} processing...'.format(j))
+            noteNodelist = make_notes(domtree, note, timesig=measuretime[j], finger_cu=measurefinger[j], divisions=divisions)
             #add_timesig(division=16, noteNodelist=noteNodelist, timesig=measuretime[j], finger_cu=measurefinger[j])
             #第一次循环中，将各音符Node添加到原有的首小节内
-            if i < 1:
+            if i <= 0:
                 for Node in noteNodelist:
                     first_measure.appendChild(Node)
             #其余的循环中，将各音符Node添加到空白的小节内
-            elif i >= 1:
+            else:
                 for Node in noteNodelist:
                     measurelist[i-1].appendChild(Node)
-                        
+                    
+        all_measures = [first_measure]    
+        all_measures.extend(measurelist)
+        backupNodes = domtree.createElement('backup')
+        duration_in_backupNodes = domtree.createElement('duration')
+        all_timesig = divisions * 4
+        _ = domtree.createTextNode(str(all_timesig))
+        
+        duration_in_backupNodes.appendChild(_)
+        backupNodes.appendChild(duration_in_backupNodes)
+        all_measures[i].appendChild(backupNodes)
+        
+        for j, note in enumerate(measurenote):
+            #print('{} processing...'.format(j))
+            noteNodelist = make_notes(domtree, note, timesig=measuretime[j], finger_cu=measurefinger[j], divisions=divisions)
+            #add_timesig(division=16, noteNodelist=noteNodelist, timesig=measuretime[j], finger_cu=measurefinger[j])
+            #第一次循环中，将各音符Node添加到原有的首小节内
+            if i <= 0:
+                for Node in noteNodelist:
+                    if haveNodes(Node, 'voice'):
+                        Node.getElementsByTagName('voice')[0].firstChild.data = 5
+                    if haveNodes(Node, 'staff'):
+                        Node.getElementsByTagName('staff')[0].firstChild.data = 2
+                    first_measure.appendChild(Node)
+            #其余的循环中，将各音符Node添加到空白的小节内
+            else:
+                for Node in noteNodelist:
+                    if haveNodes(Node, 'voice'):
+                        Node.getElementsByTagName('voice')[0].firstChild.data = 5
+                    if haveNodes(Node, 'staff'):
+                        Node.getElementsByTagName('staff')[0].firstChild.data = 2
+                    measurelist[i-1].appendChild(Node)
+        
+        '''
+        if i <= 0:
+            backupNodes = domtree.createElement('backup')
+            all_timesig = divisions * 4
+            _ = domtree.createTextNode(str(all_timesig))
+            backupNodes.appendChild(_)
+            first_measure.appendChild(backupNodes)
+            
+            backuplist = []
+            for node in [node for node in first_measure.childNodes if node.nodeName=='note']:
+                backuplist.append(node.cloneNode(True))
+                
+            for node in backuplist:
+                first_measure.appendChild(node)
+                
+        else:
+            backupNodes = domtree.createElement('backup')
+            all_timesig = divisions * 4
+            _ = domtree.createTextNode(str(all_timesig))
+            backupNodes.appendChild(_)
+            measurelist[i-1].appendChild(backupNodes)
+            
+            backuplist = []
+            for node in [node for node in measurelist[i-1].childNodes if node.nodeName=='note']:
+                print(node)
+                backuplist.append(node.cloneNode(True))
+                
+            for node in backuplist:
+                measurelist[i-1].appendChild(node)
+        '''
+            
+
     partNode = domtree.getElementsByTagName('part')  
-    print(partNode)
+    #print(partNode)
     for measure in measurelist:
         partNode[0].appendChild(measure) 
         
@@ -860,13 +985,6 @@ def generateTAB(testnotes, testfingers, testtimes, filepath):
     with open(newfilepath + '\\new_{}'.format(name), 'w', encoding='utf-8') as f:
         domtree.writexml(f, addindent=' ', newl='\n', encoding='utf-8')
     print('文件已保存为{}\\new_{}'.format(newfilepath, name))
-
-
-
-
-
-# In[28]:
-
 
 #用lettersong测试一下整体流水线，包括文件头制作、根音与旋律音识别、重新写入
 def make_rootsong(filepath):
@@ -1133,3 +1251,15 @@ def chord_recognize(pitch_cu, return_overtone=False):
         return [chord_type, singles]
     else:
         return chord_type  
+  
+def show_Nodes(Nodes, filename='show'):
+    doc = minidom.Document()
+    domtree =doc.createElement('domtree')
+    for i, node in enumerate(Nodes):
+        print(i)
+        domtree.appendChild(node)
+        
+    print(domtree.childNodes)   
+    path = os.getcwd() + '\\{}.xml'.format(filename)
+    with open(path, 'w', encoding='utf-8') as f:
+        domtree.writexml(f, addindent=' ', newl='\n')
