@@ -436,22 +436,23 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
             octavechange = 0
         #***记录调弦信息, 特殊调弦处理***#***
         staff_tuning = test_element.getElementsByTagName('staff-tuning')
-        tunings = []
+        tunings = [0, 0, 0, 0, 0, 0]
         for Node in staff_tuning:
+            linenum = Node.getAttribute('line')
             tuning_octave = Node.getElementsByTagName('tuning-octave')[0].firstChild.data
             tuning_step = Node.getElementsByTagName('tuning-step')[0].firstChild.data
             tuning_alter = '0'
             if haveNodes(Node, 'tuning-alter'):
                 tuning_alter = Node.getElementsByTagName('tuning-alter')[0].firstChild.data
             #print(tuning_octave + tuning_step + tuning_alter)
-            tunings.append(str2midi(tuning_octave + tuning_step) + int(tuning_alter))
+            tunings[int(linenum) - 1] = (str2midi(tuning_octave + tuning_step) + int(tuning_alter))
            
         standard = [40, 45, 50, 55, 59, 64]
         current = [i[1] - i[0] for i in zip(standard, tunings)]
         gl_tune = [i+12*octavechange for i in current]
         
         if show_tuning:
-            print(gl_tune)
+            print('special tuning:{}, octave-change:{}'.format(gl_tune, octavechange))
         measures = test_element.getElementsByTagName('measure') #获取所有小节的nodes
         beats = getAttr(measures[0], 'beats')  #拍号
         beat_type = getAttr(measures[0], 'beat-type')
@@ -771,29 +772,6 @@ def make_notes(domtree, pitch_cu, timesig, finger_cu, divisions=16):
         }
         
         
-        
-        '''
-        #检查附点
-        
-        print(typename)
-        if typename(timesig) == []: #当时值未出现在其中时
-            print('{} not in'.format(timesig))
-            if typename(timesig / 1.5) != []:
-                if_dot = 1
-            if typename(timesig / 1.5) == []:
-                typedict.values()-timesig
-                
-        #print(timesig)
-        else:
-            type1 = typename(timesig)
-            print('type1:{}'.format(type1))
-            
-        if if_dot == 1:  #如果有附点
-            type1 = typename(timesig / 1.5) #暂时只能识别附点 附点音符是原音符的1.5倍时长 所以除以1.5
-            dotNode = domtree.createElement('dot')
-            noteNode.appendChild(dotNode)
-        
-        '''
         get_typename = lambda type1: [key for key, value in typedict.items() if value == type1]
         type1 = get_typename(res[0])
         #print('这个音符的type是 {}'.format(type1))
@@ -896,6 +874,7 @@ def generateTAB(testnotes, testfingers, testtimes, filepath, divisions=16):
     
     for i in range(measurenum):  
         measurenote, measuretime, measurefinger = testnotes[i], testtimes[i], testfingers[i]
+        all_noteNodes = []
         for j, note in enumerate(measurenote):
             #print('{} processing...'.format(j))
             noteNodelist = make_notes(domtree, note, timesig=measuretime[j], finger_cu=measurefinger[j], divisions=divisions)
@@ -919,7 +898,7 @@ def generateTAB(testnotes, testfingers, testtimes, filepath, divisions=16):
         duration_in_backupNodes.appendChild(_)
         backupNodes.appendChild(duration_in_backupNodes)
         all_measures[i].appendChild(backupNodes)
-        
+        '''
         for j, note in enumerate(measurenote):
             #print('{} processing...'.format(j))
             noteNodelist = make_notes(domtree, note, timesig=measuretime[j], finger_cu=measurefinger[j], divisions=divisions)
@@ -940,6 +919,7 @@ def generateTAB(testnotes, testfingers, testtimes, filepath, divisions=16):
                     if haveNodes(Node, 'staff'):
                         Node.getElementsByTagName('staff')[0].firstChild.data = 2
                     measurelist[i-1].appendChild(Node)
+        '''
         
         '''
         if i <= 0:
@@ -1200,8 +1180,10 @@ def chord_recognize(pitch_cu, return_overtone=False):
     挂留2和弦：存在二度但不存在三度， 255 255 255
     挂留4和弦：存在四度但不存在三度， 525 525 525
     '''
-    pitchs = list(set([i[1:] for i in pitch_cu.split()][-4:]))
+    in_chord_pitchs = [i[1:] for i in pitch_cu.split()][-4:]
+    pitchs = list(set(in_chord_pitchs))
     singles = list(np.sort([str2midi(i) for i in pitchs]))
+    print(singles)
     _ = singles
     singles.extend([i + 12 for i in _])
     singles.extend([i + 24 for i in _])
@@ -1224,33 +1206,49 @@ def chord_recognize(pitch_cu, return_overtone=False):
             if newstr in feasure:
                 return True
         return False
-    
-    if ifin('255'): #当一阶差分只有5半音和2半音时 说明是挂2或者挂4
-        chord_type = 'sus'
+    print(feasure)
+    chord_type = 'NotChord'
+    chordchar = 'NotChord'
+    if ifin('255'): #当一阶差分只有5半音和2半音时 说明是挂2
+        chord_type = 'sus2'
+        
+        chordchar = midi2str(singles[feasure.index('2')])[1:]#2 前面的音符是挂2的根音
 
-    elif ifin('326'):
+    elif ifin('336'):
         chord_type =  'dim'
-    elif ifin('444'):
+        chordchar = midi2str(singles[feasure.index('6')+1])[1:]#6后面的是根音
+    elif ifin('444'): #aug时出现最多的音为根音，都一样就最低的音
         chord_type = 'aug'
-    elif ifin('4332') or ifin('732'):
-        chord_type = '7'
-    elif ifin('3432'):
-        chord_type = 'm7'
-    elif ifin('4341') or ifin('471'):
-        chord_type = 'maj7'
-    elif ifin('345'):
-        chord_type = 'm'
-    elif ifin('435') or ifin('75') or ifin('48') or ifin('39'):
-        chord_type = 'maj'
+        chordchar = midi2str(singles[feasure.index('6')+1])[1:]
+    #七和弦组：
+    
+    if ifin('2') or ifin('1'): 
+        #属七：
+        if ifin('4332') or ifin('246'):
+            chord_type = '7'
+            chordchar = midi2str(singles[feasure.index('4')])[1:] #4前面
+        #小七：              
+        elif ifin('3432') or ifin('723') or ifin('732'):
+            chord_type = 'm7'
+            chordchar = midi2str(singles[feasure.index('2'+1)])[1:] #2后面
+        elif ifin('4341') or ifin('471') or ifin('741'):
+            chord_type = 'maj7'
+            chordchar = midi2str(singles[feasure.index('1'+1)])[1:] #1后面
+    #三和弦组：
     else:
-        # print('{} not a chord'.format(pitchs))
-        # print(delta_singles)
-        chord_type = 'NotChord'
-
+        if ifin('345') or ifin('39'):
+            chord_type = 'm'
+            chordchar = midi2str(singles[feasure.index('3')])[1:] #3前面
+        elif ifin('435') or ifin('75'):
+            chord_type = 'maj'
+            chordchar = midi2str(singles[feasure.index('5')+1])[1:] #5后面
+        elif ifin('48') :
+            chord_type = 'maj'
+            chordchar = midi2str(singles[feasure.index('4')])[1:] #4前面
     if return_overtone == True:
         return [chord_type, singles]
     else:
-        return chord_type  
+        return chordchar, chord_type
   
 def show_Nodes(Nodes, filename='show'):
     doc = minidom.Document()
