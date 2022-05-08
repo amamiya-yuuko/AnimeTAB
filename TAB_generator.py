@@ -1217,9 +1217,9 @@ def chord_recognize(pitch_cu, return_overtone=False):
     elif ifin('336'):
         chord_type =  'dim'
         chordchar = midi2str(singles[feasure.index('6')+1])[1:]#6后面的是根音
-    elif ifin('444'): #aug时出现最多的音为根音，都一样就最低的音
+    elif ifin('444'): #aug时返回最低的音
         chord_type = 'aug'
-        chordchar = midi2str(singles[feasure.index('6')+1])[1:]
+        chordchar = in_chord_pitchs[0]
     #七和弦组：
     
     if ifin('2') or ifin('1'): 
@@ -1230,10 +1230,10 @@ def chord_recognize(pitch_cu, return_overtone=False):
         #小七：              
         elif ifin('3432') or ifin('723') or ifin('732'):
             chord_type = 'm7'
-            chordchar = midi2str(singles[feasure.index('2'+1)])[1:] #2后面
+            chordchar = midi2str(singles[feasure.index('2')+1])[1:] #2后面
         elif ifin('4341') or ifin('471') or ifin('741'):
             chord_type = 'maj7'
-            chordchar = midi2str(singles[feasure.index('1'+1)])[1:] #1后面
+            chordchar = midi2str(singles[feasure.index('1')+1])[1:] #1后面
     #三和弦组：
     else:
         if ifin('345') or ifin('39'):
@@ -1249,6 +1249,8 @@ def chord_recognize(pitch_cu, return_overtone=False):
         return [chord_type, singles]
     else:
         return chordchar, chord_type
+    
+    
   
 def show_Nodes(Nodes, filename='show'):
     doc = minidom.Document()
