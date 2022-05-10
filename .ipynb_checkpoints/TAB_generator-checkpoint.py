@@ -272,7 +272,7 @@ def finger_detect(measure):
                 elif altchange == '-1':
                     pitch += '-'
             #print('note {}, {}'.format(i, pitch))
-            fingers.append(midi2finger(str2midi(pitch), tune=gl_tune)[-1])
+            fingers.append(midi2finger(str2midi(pitch), tune=gl_tune, capo=capo)[-1])
     return fingers
 
 def tie_clean(measure, divisions=divisions, beats=4):
@@ -377,7 +377,7 @@ def tie_clean(measure, divisions=divisions, beats=4):
     # print('measure {} done'.format(measure_num), end='\n\n')
     return [new_timesig, pitch_cus, finger_cus]
 
-def str_postprocess(pitchstr, mode='pitch', pitchtype='default'):
+def str_postprocess(pitchstr, mode='pitch', pitchtype='default', capo=0):
     if mode == 'pitch':
         new_cu = ''
         pitchs = [str2midi(i) for i in pitchstr.split()]
@@ -396,7 +396,7 @@ def str_postprocess(pitchstr, mode='pitch', pitchtype='default'):
     
     if mode == 'finger':
         new_cu = ''
-        pitchs = [[i, finger2midi(i, tune=gl_tune)] for i in pitchstr.split() if i != '(R,R)']
+        pitchs = [[i, finger2midi(i, tune=gl_tune, capo=capo)] for i in pitchstr.split() if i != '(R,R)']
         newlist = sorted(pitchs, key = lambda x: x[1])
         newlist = reversed(newlist)
         for pitch in newlist:
@@ -419,9 +419,7 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
     XML_files = [file for file in XML_files if '.xml' in file]
 
     TAB = []
-    pitchset = []
-    timesigset = []
-    fingerset = []
+    pitchset, timesigset, fingerset, tuneset = [], [], [], []
     for file_num, file in enumerate(XML_files):  
         print('#####{}. {}'.format(file_num, file))
         _head = np.zeros((6, 1))
@@ -434,6 +432,13 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
             octavechange = int(octavechangeNodes[0].firstChild.data)
         else:
             octavechange = 0
+            
+        #***capo****
+        capo = 0
+        if haveNodes(test_element, 'capo'):
+            capo = int(test_element.getElementsByTagName('capo')[0].firstChild.data)
+            print('capo {}'.format(capo))
+            
         #***记录调弦信息, 特殊调弦处理***#***
         staff_tuning = test_element.getElementsByTagName('staff-tuning')
         tunings = [0, 0, 0, 0, 0, 0]
@@ -450,9 +455,12 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
         standard = [40, 45, 50, 55, 59, 64]
         current = [i[1] - i[0] for i in zip(standard, tunings)]
         gl_tune = [i+12*octavechange for i in current]
-        
+        tuneset.append(current)
         if show_tuning:
             print('special tuning:{}, octave-change:{}'.format(gl_tune, octavechange))
+        
+            
+            
         measures = test_element.getElementsByTagName('measure') #获取所有小节的nodes
         beats = getAttr(measures[0], 'beats')  #拍号
         beat_type = getAttr(measures[0], 'beat-type')
@@ -513,7 +521,7 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
         timesigset.append(timesigs)
         fingerset.append(fingers)
         TAB.append(_head)
-    return [pitchset, fingerset, timesigset]
+    return [pitchset, fingerset, timesigset, tuneset]
 
 
 # In[22]:
@@ -590,12 +598,13 @@ def midi2str(midi, alter='#'):
         str1 = str(octave) + pitchname(pitch)[0] + if_alt
         return str1
 
-def finger2midi(finger, tune=[0, 0, 0, 0, 0, 0]):
+def finger2midi(finger, tune=[0, 0, 0, 0, 0, 0], capo=0):
     '''
     由吉他指法转换为midi值
     finger：指法，例如(1, 10)代表第一弦第十品，str格式
     tune为由低到高各弦的额外调音
     '''
+    tune = [i + capo for i in tune]
     if finger == '(R,R)':
         return None
     else:
@@ -605,7 +614,7 @@ def finger2midi(finger, tune=[0, 0, 0, 0, 0, 0]):
         midi_of_string = [i[0] + i[1] for i in zip(standard, list(reversed(tune)))]
         return midi_of_string[string - 1] + fret #返回空弦midi值加品的midi值
     
-def midi2finger(midi, tune=[0, 0, 0, 0, 0, 0]):
+def midi2finger(midi, tune=[0, 0, 0, 0, 0, 0], capo=0):
     '''
     通过给出的midi值推断指板位置。一个midi值可以对应多个位置，品味最高为24品
     '''
@@ -617,9 +626,9 @@ def midi2finger(midi, tune=[0, 0, 0, 0, 0, 0]):
         '2':59,
         '1':64,
     }
-
+    
     for i, tun in enumerate(list(reversed(tune))):
-        string_dict[str(i+1)] += tun
+        string_dict[str(i+1)] += (tun+capo)
 
     fingers = []
     for string in string_dict.keys():
@@ -1183,7 +1192,7 @@ def chord_recognize(pitch_cu, return_overtone=False):
     in_chord_pitchs = [i[1:] for i in pitch_cu.split()][-4:]
     pitchs = list(set(in_chord_pitchs))
     singles = list(np.sort([str2midi(i) for i in pitchs]))
-    print(singles)
+    #print(singles)
     _ = singles
     singles.extend([i + 12 for i in _])
     singles.extend([i + 24 for i in _])
@@ -1206,11 +1215,11 @@ def chord_recognize(pitch_cu, return_overtone=False):
             if newstr in feasure:
                 return True
         return False
-    print(feasure)
+    #print(feasure)
     chord_type = 'NotChord'
     chordchar = 'NotChord'
     if ifin('255'): #当一阶差分只有5半音和2半音时 说明是挂2
-        chord_type = 'sus2'
+        chord_type = 'sus'
         
         chordchar = midi2str(singles[feasure.index('2')])[1:]#2 前面的音符是挂2的根音
 
