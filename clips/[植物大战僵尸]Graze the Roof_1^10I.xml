@@ -6,9 +6,9 @@
  </work>
  <identification>
   <encoding>
-   <encoding-date>2022-04-02</encoding-date>
-   <software>Guitar Pro 7.5.4</software>
-   <supports attribute="new-system" type="yes" element="print" value="yes"/>
+   <encoding-date>2022-07-21</encoding-date>
+   <software>Guitar Pro 7.6.0</software>
+   <supports value="yes" attribute="new-system" element="print" type="yes"/>
   </encoding>
  </identification>
  <defaults>
@@ -22,10 +22,10 @@
   </page-layout>
  </defaults>
  <credit>
-  <credit-words justify="center" font-size="24" valign="top">Graze the Roof</credit-words>
+  <credit-words font-size="24" justify="center" valign="top">Graze the Roof</credit-words>
  </credit>
  <credit>
-  <credit-words justify="center" font-size="14" valign="top">植物大战僵尸</credit-words>
+  <credit-words font-size="14" justify="center" valign="top">植物大战僵尸</credit-words>
  </credit>
  <part-list>
   <score-part id="P1">
@@ -42,6 +42,7 @@
  </part-list>
  <part id="P1">
   <measure number="1">
+   <print new-system="yes"/>
    <attributes>
     <divisions>4</divisions>
     <key>
@@ -62,30 +63,34 @@
      <line>5</line>
     </clef>
     <staff-details number="1">
-     <staff-tuning line="1">
-      <tuning-step>D</tuning-step>
-      <tuning-octave>2</tuning-octave>
-     </staff-tuning>
-     <staff-tuning line="2">
-      <tuning-step>A</tuning-step>
-      <tuning-octave>2</tuning-octave>
-     </staff-tuning>
-     <staff-tuning line="3">
-      <tuning-step>D</tuning-step>
-      <tuning-octave>3</tuning-octave>
-     </staff-tuning>
-     <staff-tuning line="4">
-      <tuning-step>G</tuning-step>
-      <tuning-octave>3</tuning-octave>
-     </staff-tuning>
-     <staff-tuning line="5">
-      <tuning-step>B</tuning-step>
-      <tuning-octave>3</tuning-octave>
-     </staff-tuning>
-     <staff-tuning line="6">
-      <tuning-step>E</tuning-step>
-      <tuning-octave>4</tuning-octave>
-     </staff-tuning>
+<?GP 
+<root>
+<staff-tuning line="1">
+<tuning-step>D</tuning-step>
+<tuning-octave>2</tuning-octave>
+</staff-tuning>
+<staff-tuning line="2">
+<tuning-step>A</tuning-step>
+<tuning-octave>2</tuning-octave>
+</staff-tuning>
+<staff-tuning line="3">
+<tuning-step>D</tuning-step>
+<tuning-octave>3</tuning-octave>
+</staff-tuning>
+<staff-tuning line="4">
+<tuning-step>G</tuning-step>
+<tuning-octave>3</tuning-octave>
+</staff-tuning>
+<staff-tuning line="5">
+<tuning-step>B</tuning-step>
+<tuning-octave>3</tuning-octave>
+</staff-tuning>
+<staff-tuning line="6">
+<tuning-step>E</tuning-step>
+<tuning-octave>4</tuning-octave>
+</staff-tuning>
+</root>
+?>
     </staff-details>
     <staff-details number="2">
      <staff-lines>6</staff-lines>
@@ -122,12 +127,19 @@
    </attributes>
    <direction directive="yes">
     <direction-type>
-     <metronome parentheses="no" default-y="40">
+     <metronome default-y="40" parentheses="no">
       <beat-unit>quarter</beat-unit>
       <per-minute>120</per-minute>
      </metronome>
     </direction-type>
     <sound tempo="120"/>
+   </direction>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
    </direction>
    <note>
     <pitch>
@@ -141,14 +153,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -163,14 +167,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -185,14 +181,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -205,14 +193,6 @@
     <stem>up</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -225,14 +205,6 @@
     <stem>up</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -245,14 +217,6 @@
     <stem>up</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -265,18 +229,17 @@
     <stem>up</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>A</step>
@@ -289,9 +252,6 @@
     <staff>2</staff>
     <beam number="1">begin</beam>
     <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
      <technical>
       <string>5</string>
       <fret>0</fret>
@@ -311,9 +271,6 @@
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
     <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
      <technical>
       <string>4</string>
       <fret>2</fret>
@@ -333,9 +290,6 @@
     <beam number="1">end</beam>
     <beam number="2">end</beam>
     <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
      <technical>
       <string>4</string>
       <fret>2</fret>
@@ -353,9 +307,6 @@
     <stem>up</stem>
     <staff>2</staff>
     <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
      <technical>
       <string>3</string>
       <fret>2</fret>
@@ -373,9 +324,6 @@
     <stem>up</stem>
     <staff>2</staff>
     <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
      <technical>
       <string>4</string>
       <fret>2</fret>
@@ -393,9 +341,6 @@
     <stem>up</stem>
     <staff>2</staff>
     <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
      <technical>
       <string>4</string>
       <fret>2</fret>
@@ -413,9 +358,6 @@
     <stem>up</stem>
     <staff>2</staff>
     <notations>
-     <dynamics>
-      <f/>
-     </dynamics>
      <technical>
       <string>4</string>
       <fret>2</fret>
@@ -424,6 +366,21 @@
    </note>
   </measure>
   <measure number="2">
+   <attributes>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
+   </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>A</step>
@@ -436,11 +393,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -455,11 +407,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -474,11 +421,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -491,11 +433,6 @@
     <stem>up</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -508,11 +445,6 @@
     <stem>up</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -525,11 +457,6 @@
     <stem>up</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -545,11 +472,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -563,11 +485,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -582,15 +499,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>A</step>
@@ -757,6 +676,21 @@
    </note>
   </measure>
   <measure number="3">
+   <attributes>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
+   </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>A</step>
@@ -769,12 +703,14 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>5</fret></root>?>
-     </technical>
-    </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -788,11 +724,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -807,11 +738,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -826,11 +752,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -846,11 +767,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -865,11 +781,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -883,11 +794,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -902,11 +808,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -920,11 +821,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -938,11 +834,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -957,11 +848,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -975,11 +861,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -994,15 +875,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>A</step>
@@ -1021,6 +904,13 @@
      </technical>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -1246,11 +1136,24 @@
      </technical>
     </notations>
    </note>
-   <barline location="left">
-    <repeat times="0" direction="forward"/>
-   </barline>
   </measure>
   <measure number="4">
+   <print new-system="yes"/>
+   <attributes>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
+   </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>G</step>
@@ -1263,12 +1166,14 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -1282,11 +1187,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1303,11 +1203,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -1323,11 +1218,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1342,11 +1232,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1360,11 +1245,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -1379,11 +1259,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1397,11 +1272,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -1416,11 +1286,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1434,11 +1299,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1452,11 +1312,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1470,11 +1325,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1488,11 +1338,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -1507,15 +1352,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>G</step>
@@ -1534,6 +1381,13 @@
      </technical>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -1780,6 +1634,21 @@
    </note>
   </measure>
   <measure number="5">
+   <attributes>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
+   </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>D</step>
@@ -1792,12 +1661,14 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -1811,11 +1682,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>6</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1832,9 +1698,6 @@
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
      <tied type="start"/>
     </notations>
    </note>
@@ -1852,11 +1715,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1873,9 +1731,6 @@
     <beam number="1">end</beam>
     <beam number="2">end</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
      <tied type="stop"/>
     </notations>
    </note>
@@ -1893,11 +1748,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1911,11 +1761,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -1930,11 +1775,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1948,11 +1788,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -1967,11 +1802,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -1987,9 +1817,6 @@
     <staff>1</staff>
     <beam number="1">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
      <tied type="start"/>
     </notations>
    </note>
@@ -2007,9 +1834,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
      <tied type="stop"/>
     </notations>
    </note>
@@ -2026,11 +1850,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2044,11 +1863,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2062,11 +1876,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -2081,15 +1890,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>D</step>
@@ -2108,6 +1919,13 @@
      </technical>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -2401,7 +2219,20 @@
   <measure number="6">
    <attributes>
     <divisions>2</divisions>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
    </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>C</step>
@@ -2414,12 +2245,14 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>5</fret></root>?>
-     </technical>
-    </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -2433,11 +2266,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>6</string><fret>5</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2451,11 +2279,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -2470,11 +2293,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2488,11 +2306,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -2507,11 +2320,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2525,11 +2333,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2543,11 +2346,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -2562,11 +2360,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2580,11 +2373,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2600,11 +2388,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2618,11 +2401,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -2637,15 +2415,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>8</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>C</step>
@@ -2664,6 +2444,13 @@
      </technical>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -2889,9 +2676,23 @@
    </note>
   </measure>
   <measure number="7">
+   <print new-system="yes"/>
    <attributes>
     <divisions>4</divisions>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
    </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>A</step>
@@ -2906,12 +2707,16 @@
     <staff>1</staff>
     <beam number="1">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>5</fret></root>?>
-     </technical>
      <tied type="start"/>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -2925,11 +2730,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -2944,11 +2744,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -2967,9 +2762,6 @@
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>5</fret></root>?>
-     </technical>
      <tied type="stop"/>
      <tied type="start"/>
     </notations>
@@ -2989,9 +2781,6 @@
     <beam number="1">end</beam>
     <beam number="2">end</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>5</fret></root>?>
-     </technical>
      <tied type="stop"/>
     </notations>
    </note>
@@ -3009,11 +2798,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3029,11 +2813,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -3048,11 +2827,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3066,11 +2840,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -3085,11 +2854,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3105,9 +2869,6 @@
     <staff>1</staff>
     <beam number="1">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
      <tied type="start"/>
     </notations>
    </note>
@@ -3125,9 +2886,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
      <tied type="stop"/>
     </notations>
    </note>
@@ -3144,11 +2902,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3163,11 +2916,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3181,11 +2929,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -3200,15 +2943,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>A</step>
@@ -3229,6 +2974,13 @@
      <tied type="start"/>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -3525,6 +3277,21 @@
    </note>
   </measure>
   <measure number="8">
+   <attributes>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
+   </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>G</step>
@@ -3537,12 +3304,14 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -3556,11 +3325,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3579,9 +3343,6 @@
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
      <tied type="start"/>
     </notations>
    </note>
@@ -3599,11 +3360,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3621,9 +3377,6 @@
     <beam number="1">end</beam>
     <beam number="2">end</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>4</fret></root>?>
-     </technical>
      <tied type="stop"/>
     </notations>
    </note>
@@ -3641,11 +3394,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3659,11 +3407,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -3678,11 +3421,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3696,11 +3434,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -3715,11 +3448,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3733,11 +3461,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3751,11 +3474,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3769,11 +3487,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -3787,11 +3500,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -3806,15 +3514,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>G</step>
@@ -3833,6 +3543,13 @@
      </technical>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -4104,6 +3821,21 @@
    </note>
   </measure>
   <measure number="9">
+   <attributes>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
+   </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>D</step>
@@ -4116,12 +3848,14 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -4135,11 +3869,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>6</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4156,9 +3885,6 @@
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
      <tied type="start"/>
     </notations>
    </note>
@@ -4176,11 +3902,6 @@
     <staff>1</staff>
     <beam number="1">continue</beam>
     <beam number="2">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4197,9 +3918,6 @@
     <beam number="1">end</beam>
     <beam number="2">end</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
      <tied type="stop"/>
     </notations>
    </note>
@@ -4217,11 +3935,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <beam number="2">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4235,11 +3948,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -4254,11 +3962,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4272,11 +3975,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -4291,11 +3989,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4311,9 +4004,6 @@
     <staff>1</staff>
     <beam number="1">begin</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
      <tied type="start"/>
     </notations>
    </note>
@@ -4331,9 +4021,6 @@
     <staff>1</staff>
     <beam number="1">end</beam>
     <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
      <tied type="stop"/>
     </notations>
    </note>
@@ -4350,11 +4037,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4368,11 +4050,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4386,11 +4063,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -4405,15 +4077,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>16</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>D</step>
@@ -4432,6 +4106,13 @@
      </technical>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -4723,9 +4404,23 @@
    </note>
   </measure>
   <measure number="10">
+   <print new-system="yes"/>
    <attributes>
     <divisions>2</divisions>
+    <staff-details number="1">
+<?GP 
+<root>
+</root>
+?>
+    </staff-details>
    </attributes>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>C</step>
@@ -4738,12 +4433,14 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>5</fret></root>?>
-     </technical>
-    </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
@@ -4757,11 +4454,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>6</string><fret>5</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4775,11 +4467,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -4794,11 +4481,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4812,11 +4494,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>1</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -4831,11 +4508,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4849,11 +4521,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4867,11 +4534,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>1</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <chord/>
@@ -4886,11 +4548,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>5</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4904,11 +4561,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>4</string><fret>0</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4922,11 +4574,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>2</string><fret>3</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <note>
     <pitch>
@@ -4940,15 +4587,17 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-<?GP7 <root><string>3</string><fret>2</fret></root>?>
-     </technical>
-    </notations>
    </note>
    <backup>
     <duration>8</duration>
    </backup>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <pitch>
      <step>C</step>
@@ -4967,6 +4616,13 @@
      </technical>
     </notations>
    </note>
+   <direction>
+    <direction-type>
+     <dynamics>
+      <f/>
+     </dynamics>
+    </direction-type>
+   </direction>
    <note>
     <chord/>
     <pitch>
