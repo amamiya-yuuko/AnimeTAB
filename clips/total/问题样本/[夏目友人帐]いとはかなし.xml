@@ -3,9 +3,9 @@
 <score-partwise version="2.0">
  <identification>
   <encoding>
-   <encoding-date>2022-04-30</encoding-date>
+   <encoding-date>2022-07-23</encoding-date>
    <software>Guitar Pro 7.6.0</software>
-   <supports element="print" attribute="new-system" type="yes" value="yes"/>
+   <supports attribute="new-system" element="print" type="yes" value="yes"/>
   </encoding>
  </identification>
  <defaults>
@@ -3045,11 +3045,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -3416,7 +3411,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -3837,9 +3831,6 @@
     </notations>
 <?GP7 <root><letring/></root>?>
    </note>
-   <barline location="right">
-    <repeat direction="backward" times="2"/>
-   </barline>
   </measure>
   <measure number="9">
    <print new-system="yes"/>
@@ -4088,11 +4079,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -4397,7 +4383,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -4654,11 +4639,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -4966,7 +4946,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -6725,11 +6704,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -7039,7 +7013,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -7630,11 +7603,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -7944,7 +7912,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -9197,11 +9164,6 @@
     <stem>down</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <note>
@@ -9218,11 +9180,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">begin</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <note>
@@ -9238,11 +9195,6 @@
     <notehead>normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <note>
@@ -9257,11 +9209,6 @@
     <stem>down</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -9288,7 +9235,6 @@
     <staff>2</staff>
     <notations>
      <technical>
-      <harmonic/>
       <string>1</string>
       <fret>0</fret>
      </technical>
@@ -9310,7 +9256,6 @@
     <beam number="1">begin</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>2</string>
       <fret>3</fret>
      </technical>
@@ -9331,7 +9276,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>2</string>
       <fret>3</fret>
      </technical>
@@ -9351,7 +9295,6 @@
     <staff>2</staff>
     <notations>
      <technical>
-      <harmonic/>
       <string>1</string>
       <fret>0</fret>
      </technical>
@@ -12468,11 +12411,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -12840,7 +12778,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -13043,8 +12980,8 @@
     <beam number="1">begin</beam>
     <notations>
      <technical>
-      <string>2</string>
-      <fret>0</fret>
+      <string>3</string>
+      <fret>4</fret>
      </technical>
 <?GP7 <root><brush type="down"/></root>?>
     </notations>
@@ -16773,7 +16710,7 @@
 <?GP7 <root><letring/></root>?>
    </note>
    <barline location="left">
-    <repeat direction="forward" times="2"/>
+    <repeat times="2" direction="forward"/>
    </barline>
   </measure>
   <measure number="39">
@@ -19167,11 +19104,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -19538,7 +19470,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -19960,7 +19891,7 @@
 <?GP7 <root><letring/></root>?>
    </note>
    <barline location="right">
-    <repeat direction="backward" times="2"/>
+    <repeat times="2" direction="backward"/>
    </barline>
   </measure>
   <measure number="46">
@@ -20210,11 +20141,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -20519,7 +20445,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -20776,11 +20701,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -21088,7 +21008,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -22847,11 +22766,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -23161,7 +23075,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -23752,11 +23665,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -24066,7 +23974,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -28224,11 +28131,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -28596,7 +28498,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -28798,8 +28699,8 @@
     <beam number="1">begin</beam>
     <notations>
      <technical>
-      <string>2</string>
-      <fret>0</fret>
+      <string>3</string>
+      <fret>4</fret>
      </technical>
 <?GP7 <root><brush type="down"/></root>?>
     </notations>
@@ -29276,11 +29177,6 @@
     <notehead parentheses="yes">normal</notehead>
     <staff>1</staff>
     <beam number="1">end</beam>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -29648,7 +29544,6 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -29677,7 +29572,7 @@
      </dynamics>
     </direction-type>
    </direction>
-   <direction directive="yes" placement="above">
+   <direction placement="above" directive="yes">
     <direction-type>
      <metronome parentheses="no" default-y="40">
       <beat-unit>quarter</beat-unit>
@@ -29860,8 +29755,8 @@
     <beam number="1">begin</beam>
     <notations>
      <technical>
-      <string>2</string>
-      <fret>0</fret>
+      <string>3</string>
+      <fret>4</fret>
      </technical>
 <?GP7 <root><brush type="down"/></root>?>
     </notations>

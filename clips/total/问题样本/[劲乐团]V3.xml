@@ -6,9 +6,9 @@
  </work>
  <identification>
   <encoding>
-   <encoding-date>2022-04-30</encoding-date>
+   <encoding-date>2022-07-23</encoding-date>
    <software>Guitar Pro 7.6.0</software>
-   <supports element="print" attribute="new-system" type="yes" value="yes"/>
+   <supports attribute="new-system" element="print" type="yes" value="yes"/>
   </encoding>
  </identification>
  <defaults>
@@ -22,10 +22,10 @@
   </page-layout>
  </defaults>
  <credit>
-  <credit-words valign="top" justify="center" font-size="24">V3</credit-words>
+  <credit-words justify="center" font-size="24" valign="top">V3</credit-words>
  </credit>
  <credit>
-  <credit-words valign="top" justify="center" font-size="14">劲乐团</credit-words>
+  <credit-words justify="center" font-size="14" valign="top">劲乐团</credit-words>
  </credit>
  <part-list>
   <score-part id="P1">
@@ -14181,9 +14181,6 @@
     </notations>
 <?GP7 <root><letring/></root>?>
    </note>
-   <barline location="right">
-    <repeat direction="backward" times="2"/>
-   </barline>
   </measure>
   <measure number="37">
    <attributes>

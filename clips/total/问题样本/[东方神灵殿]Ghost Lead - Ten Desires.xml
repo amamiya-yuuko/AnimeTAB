@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE score-partwise PUBLIC '-//Recordare//DTD MusicXML 2.0 Partwise//EN' 'http://www.musicxml.org/dtds/2.0/partwise.dtd'>
 <score-partwise version="2.0">
+ <work>
+  <work-title>www.jitashe.net</work-title>
+ </work>
  <identification>
   <encoding>
-   <encoding-date>2022-04-30</encoding-date>
+   <encoding-date>2022-07-23</encoding-date>
    <software>Guitar Pro 7.6.0</software>
-   <supports value="yes" attribute="new-system" element="print" type="yes"/>
+   <supports attribute="new-system" element="print" type="yes" value="yes"/>
   </encoding>
  </identification>
  <defaults>
@@ -19,7 +22,7 @@
   </page-layout>
  </defaults>
  <credit>
-  <credit-words justify="center" font-size="14" valign="top">www.jitashe.net</credit-words>
+  <credit-words justify="center" font-size="24" valign="top">www.jitashe.net</credit-words>
  </credit>
  <part-list>
   <score-part id="P1">
@@ -16819,9 +16822,6 @@
      </technical>
     </notations>
    </note>
-   <barline location="right">
-    <repeat times="2" direction="backward"/>
-   </barline>
   </measure>
   <measure number="29">
    <attributes>
@@ -24139,16 +24139,7 @@
      </dynamics>
     </direction-type>
    </direction>
-   <direction directive="yes" placement="above">
-    <direction-type>
-     <metronome parentheses="no" default-y="40">
-      <beat-unit>quarter</beat-unit>
-      <per-minute>67</per-minute>
-     </metronome>
-    </direction-type>
-    <sound tempo="67"/>
-   </direction>
-   <direction directive="yes" placement="above">
+   <direction placement="above" directive="yes">
     <direction-type>
      <metronome parentheses="no" default-y="40">
       <beat-unit>quarter</beat-unit>
@@ -25386,34 +25377,7 @@
      </dynamics>
     </direction-type>
    </direction>
-   <direction directive="yes" placement="above">
-    <direction-type>
-     <metronome parentheses="no" default-y="40">
-      <beat-unit>quarter</beat-unit>
-      <per-minute>52</per-minute>
-     </metronome>
-    </direction-type>
-    <sound tempo="52"/>
-   </direction>
-   <direction directive="yes" placement="above">
-    <direction-type>
-     <metronome parentheses="no" default-y="40">
-      <beat-unit>quarter</beat-unit>
-      <per-minute>50</per-minute>
-     </metronome>
-    </direction-type>
-    <sound tempo="50"/>
-   </direction>
-   <direction directive="yes" placement="above">
-    <direction-type>
-     <metronome parentheses="no" default-y="40">
-      <beat-unit>quarter</beat-unit>
-      <per-minute>45</per-minute>
-     </metronome>
-    </direction-type>
-    <sound tempo="45"/>
-   </direction>
-   <direction directive="yes" placement="above">
+   <direction placement="above" directive="yes">
     <direction-type>
      <metronome parentheses="no" default-y="40">
       <beat-unit>quarter</beat-unit>

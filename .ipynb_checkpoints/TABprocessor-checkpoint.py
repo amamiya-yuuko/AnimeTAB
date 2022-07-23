@@ -1043,21 +1043,24 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
 
                     housepair.append((start, end, charge))
             ready_for_repeat = pitchs[:abpair[0][0]]
-
             play = []
             for j in range(len(abpair)):
                 repeattime = abpair[j][2]
                 repeatunit = pitchs[abpair[j][0]:abpair[j][1]]
-                frag_unit = repeatunit[:housepair[j][0]-abpair[j][0]]
+                if len(housepair) != 0:
+                    frag_unit = repeatunit[:housepair[j][0]-abpair[j][0]]
 
                 if j < len(abpair)-1:
                     singleunit = pitchs[abpair[j][1]:abpair[j+1][0]]
                 else:
                     singleunit = pitchs[abpair[j][1]:]
+                if len(housepair) != 0:
+                    charge = housepair[j][-1]
+                else:
+                    charge = ''
 
-                charge = housepair[j][-1]
                 for i in range(repeattime):
-                    if str(i+1) in str(charge):
+                    if str(i+1) in str(charge) or charge == '':
                         for unit in repeatunit:
                             play.append(unit)
                     elif str(i+1) not in str(charge):
