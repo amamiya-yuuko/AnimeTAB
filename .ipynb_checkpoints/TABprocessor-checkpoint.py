@@ -458,17 +458,81 @@ class Tablature:
         else:
             raise Exception('Input Error: input should be int or list, but {}'.format(measurenum, type(measurenum)))
     def vectorization(self, division=16):
+        def fix_triple(a):
+            '''
+            去掉列表中的三连音时值，改成后十六
+            '''
+            triple_set = []
+            triple, triple_pos = [], []
+            for num, i in enumerate(a):
+                if len(str(i)) >= 7 and str(i)[-4:-2] != '00':
+                    triple.append(i)
+                    triple_pos.append(num)
+                if triple != [] and round(sum(triple), ndigits=4) % 0.25 == 0:
+                    triple_set.append((triple, triple_pos))
+                    triple, triple_pos = [], []
+
+            #当三连音全满时
+            ordinary_triples = [0.3333, 0.6666, 0.126666]
+            for tset in triple_set:
+                if len(tset[0])==3:
+                    extraformer, extralater = 0, 0
+                    try:
+                        assert tset[0][0] in ordinary_triples and tset[0][-1] in ordinary_triples
+                    except:
+                        for ordinary_triple in ordinary_triples:
+                            formernote = round(tset[0][0] - ordinary_triple, ndigits=4)
+                            laternote = round(tset[0][-1] - ordinary_triple, ndigits=4)
+                            if formernote % 0.25 == 0:
+                                extraformer = formernote
+                                tset[0][0] = ordinary_triple
+                            if laternote % 0.25 == 0:
+                                extralater = laternote
+                                tset[0][-1] = ordinary_triple
+                    #将三连音改成后十六
+                    for num, pos in enumerate(tset[1]):
+                        a[pos] =round(a[pos] * 0.75, ndigits=4)
+                    a[tset[1][0]] = a[tset[1][0]] * 2 + extraformer
+                    a[tset[1][-1]] = a[tset[1][-1]] + extralater
+                #当三连音不满，比如用连音线把三个变成两个时：   
+                elif len(tset[0])==2:
+                    extraformer, extralater = 0, 0
+                    try:
+                        assert tset[0][0] in ordinary_triples and tset[0][-1] in ordinary_triples
+                    except:
+                        for ordinary_triple in ordinary_triples:
+                            formernote = round(tset[0][0] - ordinary_triple, ndigits=4)
+                            laternote = round(tset[0][-1] - ordinary_triple, ndigits=4)
+                            if formernote % 0.25 == 0:
+                                extraformer = formernote
+                                tset[0][0] = ordinary_triple
+                            if laternote % 0.25 == 0:
+                                extralater = laternote
+                                tset[0][-1] = ordinary_triple
+
+                    for pos in tset[1]:
+                        a[pos] =round(min(tset[0]) * 1.5, ndigits=4)
+                    a[tset[1][0]] = a[tset[1][0]] + extraformer
+                    a[tset[1][-1]] = a[tset[1][-1]] + extralater
+            #最后把每个时值round一下保持整齐
+            for i in range(len(a)):
+                a[i] = round(a[i], ndigits=4)
+            return a
+
+
+
         measurenum = len(self.pitch)
         measurelist = []
         for i in range(measurenum):
             measurelist.append(self.choose_measure(i))
-        
+
         pitchvec, fingervec = [], []
         for measure in measurelist:
             info = measure.info #
             beat = info.beat
             pitchseries, fingerseries= [], []
-            for i, index in enumerate(zip(measure.pitch, measure.finger, measure.time)):
+            fix_triple(measure.time)
+            for i, index in enumerate(zip(measure.pitch, measure.finger, fix_triple(measure.time))):
                 note = []
                 finger = []
                 for i in range(int(index[2] * (division/4))):
@@ -553,7 +617,7 @@ class Tablature:
         else:
             real_key = min_key
 
-        print('maj {}, min {}'.format(majsum, minsum))
+        #print('maj {}, min {}'.format(majsum, minsum))
         if return_vector:
             return real_key, key_vector
         else:
@@ -684,7 +748,7 @@ class Tablature:
             return1 = Tablature(pitch=pitchs, finger=fingers, time=times, info=self.info)
             readymeasures.append(return1)
             
-        totalreturn = measure_join(readymeasures)  
+        totalreturn = measure_join(readymeasures, info=self.info)  
         return totalreturn
 
     def writeTAB(self, filepath, divisions=16):   
@@ -1131,7 +1195,7 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
                 print('measure {} processing...'.format(measure_num))
             #******获得divisions******
             if haveNodes(measure, 'divisions'):
-                divisions = measure.getElementsByTagName('divisions')[0].firstChild.data[0]
+                divisions = measure.getElementsByTagName('divisions')[0].firstChild.data
                 divisions = int(divisions)
                 
             parts = get_parts(measure) 
@@ -1183,7 +1247,7 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
         TABobjects.append(tab)
     return TABobjects
 
-def measure_join(measurelist):
+def measure_join(measurelist, info=None):
     '''
     join many measure into one Tablature object
     '''
@@ -1193,7 +1257,7 @@ def measure_join(measurelist):
         fingerlist.append(measure.finger)
         timelist.append(measure.time)
     
-    return1 = Tablature(pitch=pitchlist, finger=fingerlist, time=timelist)
+    return1 = Tablature(pitch=pitchlist, finger=fingerlist, time=timelist, info=info)
     return return1
 
 
