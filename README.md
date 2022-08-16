@@ -1,11 +1,11 @@
 # AnimeTAB
-AnimeTAB is a musicXML-based guitar tablature dataset. All tracks of AnimeTAB are from anime songs and . Our dataset including three following parts:
+AnimeTAB is a musicXML-based guitar tablature dataset. All tracks of AnimeTAB are arranged from anime and video game soundtracks. Our dataset including three following parts:
 
 ## Full tracks
-About 440 full tracks in musicXML format are in fulltracks folder, all tracks are derived from 'export to musicXML' function of Guitarpro7. 
+About 400+ full tracks are in the fulltracks folder, all tracks are derived from 'export to musicXML' function of Guitarpro7. 
 
 ## track clips
-From 440 full tracks we choose 110 best quality tracks and cut them into 560 clips by different musical structures. The structure labels and begin/end bar numbers are labeled in file names. Four kinds of strucures are included: intro(I), verse(A), chorus(B) and bridge(C).
+From 440 full tracks we choose 200+ best quality tracks and cut them into 560 clips by different musical structures. The structure labels and begin/end bar numbers are labeled in file names. Four kinds of strucures are included: intro(I), verse(A), chorus(B) and bridge(C).
 
 ## encoded tracks
 We encoded the pitches, finger positions and beats of every note clusters in measures into this format:
