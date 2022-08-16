@@ -210,6 +210,9 @@ def timesig_detect(measure, divisions, beats=4):
                 notetype = getAttr(note, 'type')
                 timesus = int(duration) / divisions
                 timesig.append(timesus)
+                
+    for i in range(len(timesig)):
+        timesig[i] = round(timesig[i], ndigits=11)
     return timesig
 
 def pitch_detect(measure):
@@ -458,6 +461,7 @@ class Tablature:
         else:
             raise Exception('Input Error: input should be int or list, but {}'.format(measurenum, type(measurenum)))
     def vectorization(self, division=16):
+
         def fix_triple(a):
             '''
             去掉列表中的三连音时值，改成后十六
@@ -465,13 +469,13 @@ class Tablature:
             triple_set = []
             triple, triple_pos = [], []
             for num, i in enumerate(a):
-                if len(str(i)) >= 7 and str(i)[-4:-2] != '00':
+                if len(str(i)) >= 7 and str(i)[5:7] != '00' and abs(i-0.5) >= 0.0001:
                     triple.append(i)
                     triple_pos.append(num)
                 if triple != [] and round(sum(triple), ndigits=4) % 0.25 == 0:
+                    #print('clear! {}'.format((triple, triple_pos)))
                     triple_set.append((triple, triple_pos))
                     triple, triple_pos = [], []
-
             #当三连音全满时
             ordinary_triples = [0.3333, 0.6666, 0.126666]
             for tset in triple_set:
@@ -1577,3 +1581,57 @@ def show_Nodes(Nodes, filename='show'):
     path = os.getcwd() + '\\{}.xml'.format(filename)
     with open(path, 'w', encoding='utf-8') as f:
         domtree.writexml(f, addindent=' ', newl='\n')
+        
+        
+def song_greek(song):
+    '''
+    对多个小节进行希腊字母化并组合成句
+    '''
+    
+    def tokenizer_preprocess(measurepitch):
+        '''
+        由于huggingface的分词会把类似4B4C这种带数字的分开，因此把数字和升降号换成字母
+        '''
+        xila = ['t', 'u', 'v', 'w', 'x', 'y', 'z', 'j', 'k'] 
+        sentence = ''
+        for cunum, cu in enumerate(measurepitch):
+            if 'SUS' in cu or 'R' in cu:
+                cu = cu.replace(' ', '')
+                sentence += cu
+                sentence += ' '
+            else:
+                notes = cu.split()
+                for notenum, note in enumerate(notes):
+                    notes[notenum] = xila[int(note[0])] + note[1:]
+                    if len(note) > 2:
+                        if note[-1] == '#':
+                            notes[notenum] = notes[notenum][0:2] + 'j' 
+                        elif note[-1] == '-':
+                            notes[notenum] = notes[notenum][0:2] + 'k' 
+
+                for note in notes:
+                    sentence += note
+                sentence += ' '
+        return sentence[0:-1]
+            
+    def tokenizer_deprocess(sentence):
+        '''
+        希腊字母的逆变换
+        '''
+        measure = []
+        xila = ['t', 'u', 'v', 'w', 'x', 'y', 'z', 'j', 'k']
+        octave = [' 0', ' 1', ' 2', ' 3', ' 4', ' 5', ' 6', '#', '-']
+        cus = sentence.split()
+        for cu in cus:
+            for i in range(len(xila)):
+                cu = cu.replace(xila[i], octave[i])
+            cu = cu[1:]
+            measure.append(cu)
+        return measure
+    song_sentence = ''
+    for measure in song:
+        song_sentence += tokenizer_preprocess(measure)
+        song_sentence += ', '
+
+    song_sentence = song_sentence[0:-2]
+    return song_sentence
