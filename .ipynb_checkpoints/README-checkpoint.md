@@ -3,7 +3,7 @@ AnimeTAB is a musicXML-based guitar tablature dataset. All tracks of AnimeTAB ar
 
 ## Full tracks
 About 400+ full tracks are in the *./AnimeTAB/Entire songs* folder. All tracks are derived from the 'export to musicXML' function of Guitarpro7 and labeled with the name of its origin anime/game. 
-
+This dataset are working under CC-We collect these tracks from 
 ## Track clips
 From 400+ full tracks we choose 200+ best quality tracks and cut them into 500+ clips by different musical structures. The clips are in *./AnimeTAB/Clips* folder and the 200+ chosen tracks are in *./AnimeTAB/Clips/Originals* folder. The structure name and begin/end bar numbers are labeled in file names. Four kinds of strucures are included: intro(I), verse(A), chorus(B) and bridge(C).
 
@@ -12,11 +12,11 @@ TABprocessor is a lightweight MIR toolkit for information extraction, processing
 ![Demonstration analysis](https://github.com/amamiya-yuuko/AnimeTAB/blob/main/Demonstration%20analysis.jpg)
 
 
-# TABProcessor
+# TABprocessor
 
-To use TABgenerator, just:
+To use TABprocessor, just:
 ```
-from TABgenerator import *
+from TABprocessor import *
 songs = readTAB(path)
 ```
 Then the **readTAB** function will read all the MusicXML tablatures in the path and return a list of *Tablature* objects.
@@ -118,12 +118,24 @@ Special tunings also supported
 
 ## Root and melody extraction
 ```
-root_detect(measure)
+print('Origin pitch: {}'.format(songs[2].pitch[0]))
+print('Origin finger: {}'.format(songs[2].finger[0]))
+
+root_song = songs[2].root_and_melody()
+print('Bassline and melody:{}'.format(root_song.pitch[0]))
 ```
+
+```
+Origin pitch: ['3C', '4C 3G', '4E']
+Origin finger: ['(5,3)', '(2,1) (3,0)', '(1,0)']
+Bassline and melody:['3C', '4C', '4E']
+```
+The *root_and_melody* method will detect the bassline and melody of a tablature, and return a new *Tablature* object with only the bassline and melody.
 ## xml files output
 ```
 generateTAB(song, path)
 ```
+Write the object into a MusicXML file
 
 ################
 
