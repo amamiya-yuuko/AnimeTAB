@@ -29,24 +29,37 @@ print('Fingering of first measure: {}'.format(song.finger[0]))
 print('Time of first measure: {}'.format(song.time[0]))
 print('Metamessage: {}'.format(song.info))
 ```
+```
+Pitch of first measure: ['3A 3E 3C 2F', '3A 3F 3C 2F']
+Fingering of first measure: ['(3,2) (4,2) (5,3) (6,1)', '(3,2) (4,3) (5,3) (6,1)']
+Time of first measure: [2.0, 2.0]
+Name: 幻化成风
+Origin: 千与千寻
+```
 
 Other functions including:
 ## Vectorization
 ```
-vec_song = song.vectorization(division=32)
-print(vec_song.pitch[0])
+print('Pitch of first measure:{}'.format(song.pitch[0]))
+print('Time of first measure:{}'.format(song.time[0]))
+
+vec_song = song.vectorization(division=16)
+print('Vectorize result:{}'.format(vec_song.pitch[0]))
 ```
 
 ```
-[]
+Pitch of first measure:['3A 3E 3C 2F', '3A 3F 3C 2F']
+Time of first measure:[2.0, 2.0]
+Vectorize result:['3A 3E 3C 2F', 'SUS', 'SUS', 'SUS', 'SUS', 'SUS', 'SUS', 'SUS', '3A 3F 3C 2F', 'SUS', 'SUS', 'SUS', 'SUS', 'SUS', 'SUS', 'SUS']
 ```
-The *vectorization* method will merge the pitch and time of a song, then return a 
+The *vectorization* method will return a list of notes and use 'SUS' to fill different note time. The element number of the list relies on the *division* argument, i.e. the time guranularity. 
+This will be a useful preprocess for end-to-end seq2seq models.
 
 ## Special events detect
 ```
 skills_detect(noteNode)
 ```
-↑This function return a dict of whether there is a possible special event in this node. For now it supports:
+The *skills_detect* function return a dict of whether there is a possible special event in a note node. For now it supports:
 ```
 special_skills = {        
         'pitch':False, #if it has a pitch
@@ -62,16 +75,18 @@ special_skills = {
         'mute':False  #if it's a dead note
     }
 ```
-and users can add the dict for more special events
+and users can add the dict for more special events.
 
 ## Key detection and shift
 
 ```
-key_detect(song.pitch)
-key_shift(origin_key, new_key)
+key = song.key()
+new_song = song.key_shift(new_key)
 ```
 
-key_detect function suspect the key by the distribution of all pitches. 
+The *key()* method suspect the key by the distribution of all pitches. Uppercase letters indicate major keys, lowercase letters indicate minor keys.
+The *key_shift(new_key)* method will transfer the pitch to the new key and return the pitch. 
+
 
 ## Chord recognition
 ```
@@ -105,13 +120,12 @@ Special tunings also supported
 ```
 root_detect(measure)
 ```
-## xml files output(unstable, editing...)
+## xml files output
 ```
-generateTAB(pitch, finger, time)
+generateTAB(song, path)
 ```
 
 ################
 
-Visit our paper on ISMIR2022 for more detials:
 
 Contact us:Yuecheng_Zhou@cuc.edu.cn
