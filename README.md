@@ -139,5 +139,5 @@ Write the object into a MusicXML file
 
 ################
 
-
+License: CC BY-NC
 Contact us:Yuecheng_Zhou@cuc.edu.cn
