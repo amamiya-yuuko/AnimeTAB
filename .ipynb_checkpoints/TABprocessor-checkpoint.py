@@ -661,7 +661,8 @@ class Tablature:
                 for pitch in new_pitchs:
                     new_cu += pitch
                     new_cu += ' '
-                new_measure.append(new_cu)
+                
+                new_measure.append(new_cu.rstrip())
             all_pitchs.append(new_measure)
 
         return all_pitchs
