@@ -5,12 +5,12 @@
   <work-title>Promise (Reprise) - Silent Hill 2 by Akira Yamaoka</work-title>
  </work>
  <identification>
-  <creator type="composer">oldwhtman</creator>
+  <creator type="arranger">oldwhtman</creator>
   <rights>oldwhtman</rights>
   <encoding>
-   <encoding-date>2022-04-30</encoding-date>
+   <encoding-date>2022-11-20</encoding-date>
    <software>Guitar Pro 7.6.0</software>
-   <supports element="print" attribute="new-system" type="yes" value="yes"/>
+   <supports attribute="new-system" value="yes" type="yes" element="print"/>
   </encoding>
   <miscellaneous>http://www.youtube.com/watch?v=X0WSYCjW3nA</miscellaneous>
  </identification>
@@ -25,13 +25,13 @@
   </page-layout>
  </defaults>
  <credit>
-  <credit-words valign="top" justify="center" font-size="24">Promise (Reprise) - Silent Hill 2 by Akira Yamaoka</credit-words>
+  <credit-words font-size="24" justify="center" valign="top">Promise (Reprise) - Silent Hill 2 by Akira Yamaoka</credit-words>
  </credit>
  <credit>
-  <credit-words valign="top" justify="center" font-size="14">Fingerstyle Guitar</credit-words>
+  <credit-words font-size="14" justify="center" valign="top">oldwhtman</credit-words>
  </credit>
  <credit>
-  <credit-words valign="top" justify="center" font-size="14">oldwhtman</credit-words>
+  <credit-words font-size="12" justify="right" valign="bottom">oldwhtman</credit-words>
  </credit>
  <part-list>
   <score-part id="P1">
@@ -135,7 +135,7 @@
    </attributes>
    <direction directive="yes">
     <direction-type>
-     <metronome parentheses="no" default-y="40">
+     <metronome default-y="40" parentheses="no">
       <beat-unit>quarter</beat-unit>
       <per-minute>80</per-minute>
      </metronome>
@@ -1233,7 +1233,6 @@
     <notations>
      <technical>
       <hammer-on number="1" type="start">H</hammer-on>
-      <hammer-on number="1" type="stop"/>
      </technical>
      <slur type="continue"/>
     </notations>
@@ -1485,8 +1484,8 @@
     <beam number="2">begin</beam>
     <notations>
      <technical>
-      <string>2</string>
-      <fret>0</fret>
+      <string>3</string>
+      <fret>4</fret>
      </technical>
      <slur type="start"/>
     </notations>
@@ -1515,8 +1514,8 @@
     <notations>
      <technical>
       <hammer-on number="1" type="start">H</hammer-on>
-      <string>3</string>
-      <fret>4</fret>
+      <string>4</string>
+      <fret>9</fret>
      </technical>
      <slur type="start"/>
     </notations>
@@ -1543,7 +1542,6 @@
     <notations>
      <technical>
       <hammer-on number="1" type="start">H</hammer-on>
-      <hammer-on number="1" type="stop"/>
       <string>3</string>
       <fret>2</fret>
      </technical>
@@ -6144,8 +6142,8 @@
     <beam number="1">begin</beam>
     <notations>
      <technical>
-      <string>1</string>
-      <fret>0</fret>
+      <string>2</string>
+      <fret>5</fret>
      </technical>
     </notations>
    </note>
@@ -6170,8 +6168,8 @@
     <beam number="1">begin</beam>
     <notations>
      <technical>
-      <string>2</string>
-      <fret>5</fret>
+      <string>1</string>
+      <fret>0</fret>
      </technical>
     </notations>
    </note>
@@ -6216,8 +6214,8 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <string>1</string>
-      <fret>0</fret>
+      <string>2</string>
+      <fret>5</fret>
      </technical>
     </notations>
    </note>
@@ -6276,8 +6274,8 @@
     <beam number="1">begin</beam>
     <notations>
      <technical>
-      <string>1</string>
-      <fret>0</fret>
+      <string>2</string>
+      <fret>5</fret>
      </technical>
     </notations>
    </note>
@@ -6336,8 +6334,8 @@
     <beam number="1">end</beam>
     <notations>
      <technical>
-      <string>1</string>
-      <fret>0</fret>
+      <string>2</string>
+      <fret>5</fret>
      </technical>
     </notations>
    </note>

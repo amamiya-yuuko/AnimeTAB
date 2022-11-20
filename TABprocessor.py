@@ -1157,10 +1157,18 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False,
                 for unit in singleunit:
                     play.append(unit)
             return play
-    if path[-2:] != '\\':
-        path += '\\'
-    XML_files = os.listdir(path)
+    
+    if os.path.isfile(path) == False:
+        XML_files = os.listdir(path)
+    else:
+        #if path[-2:] != '\\':
+        #   path += '\\'
+
+        XML_files = [os.path.basename(path)]
+        #print(XML_files)
+
     XML_files = [file for file in XML_files if '.xml' in file]
+    
 
     TAB = []
     TABobjects = []
@@ -1169,7 +1177,10 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False,
         infodict = fullinfo(file)
         _head = np.zeros((6, 1))
         
-        test_tree = parse(path + file)
+        if os.path.isfile(path) == False:
+            test_tree = parse(path + '\\' + file)
+        else:
+            test_tree = parse(os.path.dirname(path) + '\\' + file)
         test_element = test_tree.documentElement
         #***八度变化***
         octavechangeNodes = test_element.getElementsByTagName('octave-change')

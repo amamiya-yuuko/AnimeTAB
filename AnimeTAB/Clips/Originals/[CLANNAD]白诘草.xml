@@ -6,9 +6,9 @@
  </work>
  <identification>
   <encoding>
-   <encoding-date>2022-04-30</encoding-date>
+   <encoding-date>2022-11-19</encoding-date>
    <software>Guitar Pro 7.6.0</software>
-   <supports element="print" value="yes" attribute="new-system" type="yes"/>
+   <supports element="print" type="yes" value="yes" attribute="new-system"/>
   </encoding>
  </identification>
  <defaults>
@@ -22,10 +22,10 @@
   </page-layout>
  </defaults>
  <credit>
-  <credit-words valign="top" font-size="24" justify="center">白诘草</credit-words>
+  <credit-words font-size="24" valign="top" justify="center">白诘草</credit-words>
  </credit>
  <credit>
-  <credit-words valign="top" font-size="14" justify="center">clannad</credit-words>
+  <credit-words font-size="14" valign="top" justify="center">clannad</credit-words>
  </credit>
  <part-list>
   <score-part id="P1">
@@ -417,6 +417,9 @@
     </notations>
 <?GP7 <root><letring/></root>?>
    </note>
+   <barline location="left">
+    <repeat direction="forward" times="2"/>
+   </barline>
   </measure>
   <measure number="2">
    <attributes>
@@ -15685,7 +15688,7 @@
 <?GP7 <root><letring/></root>?>
    </note>
    <barline location="right">
-    <repeat times="2" direction="backward"/>
+    <repeat direction="backward" times="2"/>
    </barline>
   </measure>
   <measure number="40">

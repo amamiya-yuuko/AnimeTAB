@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from xml.dom import minidom
 from xml.dom.minidom import parse
 import os
+import copy
 
 global gl_tune
 global gl_capo
@@ -208,7 +209,7 @@ def timesig_detect(measure, divisions, beats=4):
             if special_skills['chord'] == False:
                 duration = getAttr(note, 'duration')
                 notetype = getAttr(note, 'type')
-                timesus = int(duration) / divisions
+                timesus = float(format((int(duration) / divisions), '.4f'))
                 timesig.append(timesus)
                 
     for i in range(len(timesig)):
@@ -461,74 +462,11 @@ class Tablature:
         else:
             raise Exception('Input Error: input should be int or list, but {}'.format(measurenum, type(measurenum)))
     def vectorization(self, division=16):
-
-        def fix_triple(a):
-            '''
-            去掉列表中的三连音时值，改成后十六
-            '''
-            triple_set = []
-            triple, triple_pos = [], []
-            for num, i in enumerate(a):
-                if len(str(i)) >= 7 and str(i)[5:7] != '00' and abs(i-0.5) >= 0.0001:
-                    triple.append(i)
-                    triple_pos.append(num)
-                if triple != [] and round(sum(triple), ndigits=4) % 0.25 == 0:
-                    #print('clear! {}'.format((triple, triple_pos)))
-                    triple_set.append((triple, triple_pos))
-                    triple, triple_pos = [], []
-            #当三连音全满时
-            ordinary_triples = [0.3333, 0.6666, 0.126666]
-            for tset in triple_set:
-                if len(tset[0])==3:
-                    extraformer, extralater = 0, 0
-                    try:
-                        assert tset[0][0] in ordinary_triples and tset[0][-1] in ordinary_triples
-                    except:
-                        for ordinary_triple in ordinary_triples:
-                            formernote = round(tset[0][0] - ordinary_triple, ndigits=4)
-                            laternote = round(tset[0][-1] - ordinary_triple, ndigits=4)
-                            if formernote % 0.25 == 0:
-                                extraformer = formernote
-                                tset[0][0] = ordinary_triple
-                            if laternote % 0.25 == 0:
-                                extralater = laternote
-                                tset[0][-1] = ordinary_triple
-                    #将三连音改成后十六
-                    for num, pos in enumerate(tset[1]):
-                        a[pos] =round(a[pos] * 0.75, ndigits=4)
-                    a[tset[1][0]] = a[tset[1][0]] * 2 + extraformer
-                    a[tset[1][-1]] = a[tset[1][-1]] + extralater
-                #当三连音不满，比如用连音线把三个变成两个时：   
-                elif len(tset[0])==2:
-                    extraformer, extralater = 0, 0
-                    try:
-                        assert tset[0][0] in ordinary_triples and tset[0][-1] in ordinary_triples
-                    except:
-                        for ordinary_triple in ordinary_triples:
-                            formernote = round(tset[0][0] - ordinary_triple, ndigits=4)
-                            laternote = round(tset[0][-1] - ordinary_triple, ndigits=4)
-                            if formernote % 0.25 == 0:
-                                extraformer = formernote
-                                tset[0][0] = ordinary_triple
-                            if laternote % 0.25 == 0:
-                                extralater = laternote
-                                tset[0][-1] = ordinary_triple
-
-                    for pos in tset[1]:
-                        a[pos] =round(min(tset[0]) * 1.5, ndigits=4)
-                    a[tset[1][0]] = a[tset[1][0]] + extraformer
-                    a[tset[1][-1]] = a[tset[1][-1]] + extralater
-            #最后把每个时值round一下保持整齐
-            for i in range(len(a)):
-                a[i] = round(a[i], ndigits=4)
-            return a
-
-
-
-        measurenum = len(self.pitch)
+        new_tab = copy.deepcopy(self)
+        measurenum = len(new_tab.pitch)
         measurelist = []
         for i in range(measurenum):
-            measurelist.append(self.choose_measure(i))
+            measurelist.append(new_tab.choose_measure(i))
 
         pitchvec, fingervec = [], []
         for measure in measurelist:
@@ -552,7 +490,7 @@ class Tablature:
                     fingerseries.append(notezip[1])
             pitchvec.append(pitchseries)
             fingervec.append(fingerseries)
-        vecsong = Tablature(pitch=pitchvec, finger=fingervec, time=self.time, info=self.info)
+        vecsong = Tablature(pitch=pitchvec, finger=fingervec, time=new_tab.time, info=new_tab.info)
         return vecsong
     
     def key(self, return_vector=False):
@@ -661,7 +599,6 @@ class Tablature:
                 for pitch in new_pitchs:
                     new_cu += pitch
                     new_cu += ' '
-                
                 new_measure.append(new_cu.rstrip())
             all_pitchs.append(new_measure)
 
@@ -671,11 +608,12 @@ class Tablature:
         根音和旋律音检测
         measure:一个三个元素的list，分别是小节内的所有音、指法、时间
         '''
+        copied = copy.deepcopy(self)
         
-        measurenum = len(self.pitch)
+        measurenum = len(copied.pitch)
         measurelist = []
         for i in range(measurenum):
-            measurelist.append(self.choose_measure(i))
+            measurelist.append(copied.choose_measure(i))
         
         readymeasures = []
         for measure in measurelist:
@@ -755,6 +693,8 @@ class Tablature:
             
         totalreturn = measure_join(readymeasures, info=self.info)  
         return totalreturn
+      
+    
 
     def writeTAB(self, filepath, divisions=16):   
         def make_notes(domtree, pitch_cu, timesig, finger_cu, divisions=16):
@@ -1011,8 +951,87 @@ class Tablature:
         print('pitch: {}'.format(self.pitch))
         print('finger: {}'.format(self.finger))
         print('time: {}'.format(self.time))
-        
-def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False):
+
+def time_round(time, minstep=0.125):
+    '''
+    用于将零碎的时值取整，比如0.249和0.251会被取整到0.25
+    '''
+    if time%minstep <= 0.01:#说明原时值比0.125的整倍数稍微多一点
+
+        return (time//minstep) * minstep
+    elif abs(time%minstep - minstep) <= 0.01: #说明比0.125的整倍数低一点
+
+        return (time//minstep +1) * minstep 
+    else:
+        return time
+    
+def fix_triple(a):
+    '''
+    去掉列表中的三连音时值，改成后十六
+    '''
+    triple_set = []
+    triple, triple_pos = [], []
+    for num, i in enumerate(a):
+        if time_round(i) % 0.125 >= 0.000001:
+            
+        #if len(str(i)) >= 7 and str(i)[5:7] != '00' and abs(i-0.5) >= 0.0001:
+            triple.append(i)
+            triple_pos.append(num)
+
+        if triple != [] and time_round(sum(triple)) % 0.25 <= 0.001:
+
+            #print('clear! {}'.format((triple, triple_pos)))
+            triple_set.append((triple, triple_pos))
+            triple, triple_pos = [], []
+    #当三连音全满时
+    ordinary_triples = [0.3333, 0.6666, 0.126666]
+    for tset in triple_set:
+        if len(tset[0])==3:
+            extraformer, extralater = 0, 0
+            try:
+                assert tset[0][0] in ordinary_triples and tset[0][-1] in ordinary_triples
+            except:
+                for ordinary_triple in ordinary_triples:
+                    formernote = round(tset[0][0] - ordinary_triple, ndigits=4)
+                    laternote = round(tset[0][-1] - ordinary_triple, ndigits=4)
+                    if formernote % 0.25 == 0:
+                        extraformer = formernote
+                        tset[0][0] = ordinary_triple
+                    if laternote % 0.25 == 0:
+                        extralater = laternote
+                        tset[0][-1] = ordinary_triple
+            #将三连音改成后十六
+            for num, pos in enumerate(tset[1]):
+                a[pos] =round(a[pos] * 0.75, ndigits=4)
+            a[tset[1][0]] = a[tset[1][0]] * 2 + extraformer
+            a[tset[1][-1]] = a[tset[1][-1]] + extralater
+
+        #当三连音不满，比如用连音线把三个变成两个时：   
+        elif len(tset[0])==2:
+            extraformer, extralater = 0, 0
+            try:
+                assert tset[0][0] in ordinary_triples and tset[0][-1] in ordinary_triples
+            except:
+                for ordinary_triple in ordinary_triples:
+                    formernote = round(tset[0][0] - ordinary_triple, ndigits=4)
+                    laternote = round(tset[0][-1] - ordinary_triple, ndigits=4)
+                    if formernote % 0.25 == 0:
+                        extraformer = formernote
+                        tset[0][0] = ordinary_triple
+                    if laternote % 0.25 == 0:
+                        extralater = laternote
+                        tset[0][-1] = ordinary_triple
+
+            for pos in tset[1]:
+                a[pos] =round(min(tset[0]) * 1.5, ndigits=4)
+            a[tset[1][0]] = a[tset[1][0]] + extraformer
+            a[tset[1][-1]] = a[tset[1][-1]] + extralater
+    #最后把每个时值round一下保持整齐
+    for i in range(len(a)):
+        a[i] = time_round(a[i])
+    return a
+      
+def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False, if_fix_triple=False):
     '''
     Read a TAB in musicXML form, return the pitch, finger position and note beat
     ========
@@ -1138,10 +1157,18 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
                 for unit in singleunit:
                     play.append(unit)
             return play
-    if path[-2:] != '\\':
-        path += '\\'
-    XML_files = os.listdir(path)
+    
+    if os.path.isfile(path) == False:
+        XML_files = os.listdir(path)
+    else:
+        #if path[-2:] != '\\':
+        #   path += '\\'
+
+        XML_files = [os.path.basename(path)]
+        #print(XML_files)
+
     XML_files = [file for file in XML_files if '.xml' in file]
+    
 
     TAB = []
     TABobjects = []
@@ -1150,7 +1177,10 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
         infodict = fullinfo(file)
         _head = np.zeros((6, 1))
         
-        test_tree = parse(path + file)
+        if os.path.isfile(path) == False:
+            test_tree = parse(path + '\\' + file)
+        else:
+            test_tree = parse(os.path.dirname(path) + '\\' + file)
         test_element = test_tree.documentElement
         #***八度变化***
         octavechangeNodes = test_element.getElementsByTagName('octave-change')
@@ -1235,6 +1265,8 @@ def readTAB(path, pitchtype='default', show_processing=False, show_tuning=False)
             for i in range(len(_timesig)):
                 _pitch[i] = str_postprocess(_pitch[i], pitchtype=pitchtype)
                 _finger[i] = str_postprocess(_finger[i], mode='finger')
+            if if_fix_triple:
+                _timesig = fix_triple(_timesig)
             timesigs.append(_timesig)
             pitchs.append(_pitch)
             fingers.append(_finger)

@@ -5,11 +5,11 @@
   <work-title>晓之车</work-title>
  </work>
  <identification>
-  <creator type="composer">FictionJiction Yuka</creator>
+  <creator type="arranger">FictionJiction Yuka</creator>
   <encoding>
-   <encoding-date>2022-04-30</encoding-date>
+   <encoding-date>2022-11-20</encoding-date>
    <software>Guitar Pro 7.6.0</software>
-   <supports value="yes" attribute="new-system" element="print" type="yes"/>
+   <supports attribute="new-system" value="yes" type="yes" element="print"/>
   </encoding>
  </identification>
  <defaults>
@@ -23,13 +23,13 @@
   </page-layout>
  </defaults>
  <credit>
-  <credit-words justify="center" font-size="24" valign="top">晓之车</credit-words>
+  <credit-words font-size="24" justify="center" valign="top">晓之车</credit-words>
  </credit>
  <credit>
-  <credit-words justify="center" font-size="14" valign="top">高达</credit-words>
+  <credit-words font-size="14" justify="center" valign="top">FictionJiction Yuka</credit-words>
  </credit>
  <credit>
-  <credit-words justify="center" font-size="14" valign="top">FictionJiction Yuka</credit-words>
+  <credit-words font-size="12" justify="right" valign="bottom">FictionJiction Yuka</credit-words>
  </credit>
  <part-list>
   <score-part id="P1">
@@ -133,7 +133,7 @@
    </attributes>
    <direction directive="yes">
     <direction-type>
-     <metronome parentheses="no" default-y="40">
+     <metronome default-y="40" parentheses="no">
       <beat-unit>quarter</beat-unit>
       <per-minute>90</per-minute>
      </metronome>
@@ -439,9 +439,6 @@
     </notations>
 <?GP7 <root><letring/></root>?>
    </note>
-   <barline location="left">
-    <repeat times="0" direction="forward"/>
-   </barline>
   </measure>
   <measure number="2">
    <attributes>
@@ -551,11 +548,6 @@
     <stem>down</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -682,7 +674,6 @@
     <staff>2</staff>
     <notations>
      <technical>
-      <harmonic/>
       <string>1</string>
       <fret>0</fret>
      </technical>
@@ -1093,11 +1084,6 @@
     <stem>down</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <note>
@@ -1112,11 +1098,6 @@
     <stem>down</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <backup>
@@ -1220,7 +1201,6 @@
     <staff>2</staff>
     <notations>
      <technical>
-      <harmonic/>
       <string>2</string>
       <fret>0</fret>
      </technical>
@@ -1240,7 +1220,6 @@
     <staff>2</staff>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>0</fret>
      </technical>
@@ -5439,11 +5418,6 @@
     <stem>down</stem>
     <notehead>normal</notehead>
     <staff>1</staff>
-    <notations>
-     <technical>
-      <harmonic/>
-     </technical>
-    </notations>
 <?GP7 <root><letring/></root>?>
    </note>
    <note>
@@ -5645,7 +5619,6 @@
     <staff>2</staff>
     <notations>
      <technical>
-      <harmonic/>
       <string>3</string>
       <fret>2</fret>
      </technical>
